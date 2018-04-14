@@ -16,28 +16,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class MultiplecancerPage implements OnChanges {
   total ;
   Pollutant2 ;
-  Concentration  ;
+  Concentration=[];
   tables=0
   tableDis="false";
-res=[];
-final=[];
+  res=[];
+  final=[];
+  number_of_values;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MultiplecancerPage');
   }
-  ngOnChanges(){
+ ngOnChanges(){
     console.log("changes done");
   }
   getTableVlaues(){
     console.log("this is triggered");
-    let number_of_values=Object.keys(this.Pollutant2).length
+    this.number_of_values=Object.keys(this.Pollutant2).length
     
-    for(let i=0;i<number_of_values;i++){
+    for(let i=0;i<this.number_of_values;i++){
       this.res.push(i);
       console.log(this.res);
     }
+
     //this.final=[[res:this.res,values:this.Pollutant2]
   }
   calculate(){
@@ -45,6 +47,9 @@ final=[];
     this.tables=4;
     this.tableDis="true";
     console.log("concentrationis"+this.Concentration);
+    for(let i=0;i<this.number_of_values;i++)
+    this.final[i]=this.Concentration[i]*this.Pollutant2[i]
 
+    console.log("Final result "+this.final)
      }
 }
